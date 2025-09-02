@@ -12,7 +12,7 @@ export default function Home() {
     return <div className="text-center text-2xl font-semibold">Loading...</div>
   }
   return (
-    <div className="py-8 container mx-auto flex flex-wrap justify-center gap-10">
+    <div className="py-8 md:py2 container mx-auto flex flex-wrap justify-center gap-5">
       {
         recipeList && recipeList.length > 0 ?
         recipeList.map((item) => <RecipeItem item={item} />) 

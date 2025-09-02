@@ -4,9 +4,10 @@ import React from "react";
 
 export default function Navbar() {
 
+  // passing this through the context 
   const {searchParam, setSearchParam, handleSubmit} = React.useContext(GlobalContext)!;
 
-  console.log(searchParam);
+  
   
 
   return (

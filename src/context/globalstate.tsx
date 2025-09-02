@@ -2,7 +2,7 @@ import React from "react";
 import { GlobalContext } from "./globalcontext";
 
 export default function GlobalState({ children }: { children: React.ReactNode }) {
-
+  // defining the type for the recipe object same as globalcontext.tsx
   type Recipe = {
     id: string;
     title: string;
@@ -12,9 +12,11 @@ export default function GlobalState({ children }: { children: React.ReactNode })
 
   const [searchParam, setSearchParam] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  //calling the recipe object type here
   const [recipeList, setRecipeList] = React.useState<Recipe[]>([]);
+  const [recipeDetailsData, setRecipeDetailsData] = React.useState<Recipe | null>(null);
 
-
+  //async function to fetch the api data
   async function handleSubmit(event: React.FormEvent) {
     try {
 
@@ -35,10 +37,9 @@ export default function GlobalState({ children }: { children: React.ReactNode })
     }
   }
 
-  console.log(recipeList,loading);
-  
+  //providing the values to the context, passing props to children
   return (
-    <GlobalContext.Provider value={{ searchParam, setSearchParam, handleSubmit, loading, recipeList }}>
+    <GlobalContext.Provider value={{ searchParam, setSearchParam, handleSubmit, loading, recipeList ,recipeDetailsData, setRecipeDetailsData}}>
       {children}
     </GlobalContext.Provider>
   );
