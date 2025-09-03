@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
+import { decodeHtml } from "../utilities/decodeHtml";
+import type { Recipe } from "../types/recipe";
 
 interface RecipeItemProps {
-    children?: React.ReactNode;
-    item: {
-        id: string;
-        title: string;
-        publisher: string;
-        image_url: string;
-    };
+    item:Recipe;
 }
 
 
@@ -25,7 +21,7 @@ export default function RecipeItem({ item }: RecipeItemProps) {
                     {
                         item?.publisher
                     }
-                    <h3 className="font-bold text-2x1 truncate text-black font-bold">{item?.title}</h3>
+                    <h3 className="font-bold text-2x1 truncate text-black font-bold">{decodeHtml(item?.title)}</h3>
                     {/* Link from router allows us to click details and pass in its id for the details page */}
                     <Link to={`/recipe-item/${item?.id}`} className="text-sm p-3 mt-3 px-8 rounded-large uppercase font-medium tracking-wider inline-block shadow-medium bg-indigo-400 text-white">Recipe Details</Link>
                 </span>
