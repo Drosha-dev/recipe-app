@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import type { Recipe } from "../components/types/recipe";
 //Had to seperate the context from the state to avoid circular dependency issues
 
 
@@ -8,12 +9,12 @@ import { createContext } from "react";
 
 // defining the type for the recipe object
 
-type Recipe = {
-    id: string;
-    title: string;
-    publisher: string;
-    image_url: string;
-  };
+// type Recipe = {
+//     id: string;
+//     title: string;
+//     publisher: string;
+//     image_url: string;
+//   };
 //props for the context
 interface GlobalContextType {
   searchParam: string;

@@ -1,14 +1,15 @@
 import React from "react";
 import { GlobalContext } from "./globalcontext";
+import type { Recipe } from "../components/types/recipe";
 
 export default function GlobalState({ children }: { children: React.ReactNode }) {
   // defining the type for the recipe object same as globalcontext.tsx
-  type Recipe = {
-    id: string;
-    title: string;
-    publisher: string;
-    image_url: string;
-  };
+  // type Recipe = {
+  //   id: string;
+  //   title: string;
+  //   publisher: string;
+  //   image_url: string;
+  // };
 
   const [searchParam, setSearchParam] = React.useState('');
   const [loading, setLoading] = React.useState(false);
