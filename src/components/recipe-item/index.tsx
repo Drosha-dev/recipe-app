@@ -23,7 +23,7 @@ export default function RecipeItem({ item }: RecipeItemProps) {
                     }
                     <h3 className="font-bold text-2x1 truncate text-black font-bold">{decodeHtml(item?.title)}</h3>
                     {/* Link from router allows us to click details and pass in its id for the details page */}
-                    <Link to={`/recipe-item/${item?.id}`} className="text-sm p-3 mt-3 px-8 rounded-large uppercase font-medium tracking-wider inline-block shadow-medium bg-indigo-400 text-white">Recipe Details</Link>
+                    <Link to={`/recipe-item/${item?.id}`} className="text-sm p-3 mt-3 px-8 rounded-large uppercase font-medium tracking-wider inline-block shadow-medium bg-indigo-400 text-white transform transition-transform duration-150 active:scale-95 active:shadow-sm">Recipe Details</Link>
                 </span>
             </div>
         </div>
