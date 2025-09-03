@@ -1,6 +1,7 @@
 import React from "react";
 import { GlobalContext } from "./globalcontext";
 import type { Recipe } from "../components/types/recipe";
+import { useNavigate } from "react-router";
 
 export default function GlobalState({ children }: { children: React.ReactNode }) {
   // defining the type for the recipe object same as globalcontext.tsx
@@ -16,6 +17,9 @@ export default function GlobalState({ children }: { children: React.ReactNode })
   //calling the recipe object type here
   const [recipeList, setRecipeList] = React.useState<Recipe[]>([]);
   const [recipeDetailsData, setRecipeDetailsData] = React.useState<Recipe | null>(null);
+  const [favoritesList, setFavoritesList] = React.useState<Recipe[]>([]);
+
+  const navigate = useNavigate();
 
   //async function to fetch the api data
   async function handleSubmit(event: React.FormEvent) {
@@ -29,6 +33,7 @@ export default function GlobalState({ children }: { children: React.ReactNode })
         setRecipeList(data.data.recipes);
         setLoading(false);
         setSearchParam('');
+        navigate('/');
       }
 
     } catch (error) {
@@ -38,9 +43,26 @@ export default function GlobalState({ children }: { children: React.ReactNode })
     }
   }
 
+  function handleAddToFavorites(item: Recipe) {
+
+    const copyFavoritesList = [...favoritesList];
+    const index = copyFavoritesList.findIndex(favorite => favorite.id === item.id);
+
+    if(index === -1){
+      copyFavoritesList.push(item);
+    } else {
+      copyFavoritesList.splice(index);
+    }
+
+    setFavoritesList(copyFavoritesList);
+  }
+
+  console.log(favoritesList,'favoritesList');
+  
+
   //providing the values to the context, passing props to children
   return (
-    <GlobalContext.Provider value={{ searchParam, setSearchParam, handleSubmit, loading, recipeList ,recipeDetailsData, setRecipeDetailsData}}>
+    <GlobalContext.Provider value={{ searchParam, setSearchParam, handleSubmit, loading, recipeList ,recipeDetailsData, setRecipeDetailsData, handleAddToFavorites,favoritesList}}>
       {children}
     </GlobalContext.Provider>
   );

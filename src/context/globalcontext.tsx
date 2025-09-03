@@ -24,6 +24,8 @@ interface GlobalContextType {
   recipeList: Recipe[] | null;
   recipeDetailsData: Recipe | null;
   setRecipeDetailsData: React.Dispatch<React.SetStateAction<Recipe | null>>;
+  handleAddToFavorites: (item: Recipe) => void;
+  favoritesList: Recipe[] | null;
 }
 
 // Use `null` initially, but type it as GlobalContextType | null
